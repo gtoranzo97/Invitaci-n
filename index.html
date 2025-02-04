@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Valentín para Ti</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Avenir', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Estilo para las secciones */
+        .landing1, .landing2, .landing3, .landingNo {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Fondo y animación del gradiente */
+        .landing1, .landing2, .landing3 {
+            background: linear-gradient(270deg, #D7A6FF, #9C66E6, #D7A6FF);
+            background-size: 600% 600%;
+            animation: gradientAnimation 10s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Estilo para la landing "NO" */
+        .landingNo {
+            background-color: black;
+            color: white;
+        }
+
+        .landing1 img, .landing3 img {
+            max-width: 90%;
+            height: auto;
+        }
+
+        .discover-button, .choice-button {
+            position: absolute;
+            bottom: 20px;
+            padding: 15px 30px;
+            background-color: #9C66E6;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .discover-button:hover, .choice-button:hover {
+            background-color: #7A48CC;
+        }
+
+        video {
+            max-width: 70%; /* Reducido para dar espacio a los botones */
+            max-height: 70%;
+            z-index: 10;
+        }
+
+        /* Estilo para el botón "Atrás" */
+        .back-button {
+            position: absolute;
+            bottom: 20px;
+            padding: 10px 20px;
+            background-color: #9C66E6;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .back-button:hover {
+            background-color: #7A48CC;
+        }
+
+        /* Contenedor de botones en landing2 */
+        .button-container {
+            position: absolute;
+            top: 50%;
+            width: 100%;  /* Ancho completo para los botones */
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%); /* Centrado vertical */
+        }
+
+        /* Estilos para los botones */
+        .choice-button {
+            padding: 15px 30px;
+            background-color: #9C66E6;
+            color: white;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .choice-button:hover {
+            background-color: #7A48CC;
+        }
+
+        /* Especificamos que el botón NO debe estar a la izquierda */
+        .left {
+            position: absolute;
+            left: 10%;
+        }
+
+        /* Especificamos que el botón SÍ debe estar a la derecha */
+        .right {
+            position: absolute;
+            right: 10%;
+        }
+
+        /* Ajustes para la imagen de la carta en landing 3 */
+        .landing3 img {
+            max-width: 32%;  /* Reducido a 32% para que la imagen sea más pequeña */
+            height: auto;
+            object-fit: contain;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Primera sección: La imagen y el botón -->
+    <div class="landing1" id="landing1">
+        <img src="SV.png" alt="San Valentín">
+        <button class="discover-button" onclick="showVideo()">DESCÚBRELO AQUÍ</button>
+    </div>
+
+    <!-- Segunda sección: El video -->
+    <div class="landing2" id="landing2" style="display: none;">
+        <video autoplay controls>
+            <source src="SV14.mp4" type="video/mp4">
+            Tu navegador no soporta el video.
+        </video>
+        <div class="button-container">
+            <button class="choice-button left" onclick="goToNo()">NO</button>
+            <button class="choice-button right" onclick="showLetter()">SÍ</button>
+        </div>
+        <button class="back-button" onclick="goBackToLanding1()">Atrás</button>
+    </div>
+
+    <!-- Tercera sección: La carta -->
+    <div class="landing3" id="landing3" style="display: none;">
+        <img src="carta.jpg" alt="Carta de San Valentín">
+        <button class="back-button" onclick="goBackToVideo()">Atrás</button>
+    </div>
+
+    <!-- Cuarta sección: Landing "NO" -->
+    <div class="landingNo" id="landingNo" style="display: none;">
+        <h1>¿¿¿¿¿¿NOOOOO?????? EN SERIO!!!!??? NO LO ACEPTO</h1>
+        <button class="back-button" onclick="goBackToLanding2()">Atrás</button>
+    </div>
+
+    <script>
+        function showVideo() {
+            document.getElementById("landing1").style.display = "none";
+            document.getElementById("landing2").style.display = "flex";
+        }
+
+        function goBackToLanding1() {
+            document.getElementById("landing2").style.display = "none";
+            document.getElementById("landing1").style.display = "flex";
+        }
+
+        function showLetter() {
+            document.getElementById("landing2").style.display = "none";
+            document.getElementById("landing3").style.display = "flex";
+        }
+
+        function goBackToVideo() {
+            document.getElementById("landing3").style.display = "none";
+            document.getElementById("landing2").style.display = "flex";
+        }
+
+        function goToNo() {
+            document.getElementById("landing2").style.display = "none";
+            document.getElementById("landingNo").style.display = "flex";
+        }
+
+        function goBackToLanding2() {
+            document.getElementById("landingNo").style.display = "none";
+            document.getElementById("landing2").style.display = "flex";
+        }
+    </script>
+
+</body>
+</html>
+
